@@ -1,15 +1,16 @@
-package com.dipom.food.mvp.ui.adapter
+package com.dipom.food.mvp.ui.recycler
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.dipom.food.Comparator
 import com.dipom.food.databinding.ItemMealBinding
 import com.dipom.food.mvp.model.MealItemModel
+import com.squareup.picasso.Picasso
 
-class MealsAdapter: ListAdapter<MealItemModel,MealsAdapter.MealViewHolder>(
+class MealsAdapter(
+    val picasso: Picasso
+): ListAdapter<MealItemModel,MealViewHolder>(
     Comparator.mealsComparator
 ) {
 
@@ -20,7 +21,8 @@ class MealsAdapter: ListAdapter<MealItemModel,MealsAdapter.MealViewHolder>(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            picasso = picasso
         )
     }
 
@@ -28,13 +30,4 @@ class MealsAdapter: ListAdapter<MealItemModel,MealsAdapter.MealViewHolder>(
         holder.bind(getItem(position))
     }
 
-
-    inner class MealViewHolder(
-        binding: ItemMealBinding
-    ) : ViewHolder(binding.root){
-
-        fun bind(item: MealItemModel) {
-
-        }
-    }
 }
