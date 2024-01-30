@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.dipom.food.databinding.ActivityMainBinding
-import com.dipom.food.mvp.ui.MealsFragment
+import com.dipom.food.mvp.view.ui.MealsFragment
 
 class MainActivity : AppCompatActivity() {
 

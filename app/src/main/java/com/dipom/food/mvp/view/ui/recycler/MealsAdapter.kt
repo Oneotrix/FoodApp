@@ -1,4 +1,4 @@
-package com.dipom.food.mvp.ui.recycler
+package com.dipom.food.mvp.view.ui.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 
 class MealsAdapter(
     val picasso: Picasso
-): ListAdapter<MealItemModel,MealViewHolder>(
+): ListAdapter<MealItemModel, MealViewHolder>(
     Comparator.mealsComparator
 ) {
 
