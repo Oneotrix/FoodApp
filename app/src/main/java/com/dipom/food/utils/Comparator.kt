@@ -1,4 +1,4 @@
-package com.dipom.food
+package com.dipom.food.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.dipom.food.mvp.model.MealItemModel

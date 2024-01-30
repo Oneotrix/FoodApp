@@ -3,7 +3,7 @@ package com.dipom.food.mvp.view.ui.recycler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.dipom.food.Comparator
+import com.dipom.food.utils.Comparator
 import com.dipom.food.databinding.ItemMealBinding
 import com.dipom.food.mvp.model.MealItemModel
 import com.squareup.picasso.Picasso
