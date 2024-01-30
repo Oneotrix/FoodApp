@@ -1,14 +1,18 @@
 package com.dipom.food.mvp.ui
 
+import android.app.AppComponentFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dipom.food.databinding.FragmentMealsBinding
+import com.dipom.food.di.AppComponent
+import com.dipom.food.di.DaggerAppComponent
+import com.dipom.food.di.modules.ContextModule
 import com.dipom.food.mvp.model.MealItemModel
 import com.dipom.food.mvp.ui.recycler.MealsAdapter
-import com.dipom.food.network.api.Api
+import com.dipom.food.network.api.MealsApi
 import com.dipom.food.network.model.RecipeNetModel
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
@@ -29,6 +33,8 @@ class MealsFragment: Fragment() {
 
     private lateinit var picasso: Picasso
 
+    private lateinit var mealsService: MealsApi
+
     private val mealsAdapter by lazy {
         MealsAdapter(picasso)
     }
@@ -39,39 +45,24 @@ class MealsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMealsBinding.inflate(inflater, container, false)
-        retrofitRequest()
+        val daggerAppComponent = DaggerAppComponent.builder()
+            .contextModule(ContextModule(requireContext()))
+            .build()
+
+        mealsService  = daggerAppComponent.getMealsService()
+        picasso = daggerAppComponent.getPicasso()
 
         binding.rvMeals.adapter = mealsAdapter
+
+        retrofitRequest()
+
         return binding.root
     }
 
 
     fun retrofitRequest() {
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Api.BASE_URL_RECIPES)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(Api::class.java)
-
-        picasso = Picasso.Builder(requireContext())
-            .downloader(OkHttp3Downloader(okHttpClient))
-            .build()
-
-
-
-
-
-
-        val call: Call<RecipeNetModel> = retrofit.getRecipes()
+        val call: Call<RecipeNetModel> = mealsService.getRecipes()
         call.enqueue(object : Callback<RecipeNetModel> {
             override fun onResponse(
                 call: Call<RecipeNetModel>,
