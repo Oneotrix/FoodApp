@@ -1,7 +1,7 @@
 package com.dipom.food
 
 import androidx.recyclerview.widget.DiffUtil
-import com.dipom.food.mvp.model.MealItemModel
+import com.dipom.food.mvp.meals.MealItemModel
 
 object Comparator {
 
