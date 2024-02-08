@@ -1,8 +1,8 @@
-package com.dipom.food.mvp.ui.recycler
+package com.dipom.food.mvp.meals.ui.recycler
 
 import androidx.recyclerview.widget.RecyclerView
 import com.dipom.food.databinding.ItemMealBinding
-import com.dipom.food.mvp.model.MealItemModel
+import com.dipom.food.mvp.meals.MealItemModel
 import com.squareup.picasso.Picasso
 
 class MealViewHolder(

@@ -1,5 +1,4 @@
-package com.dipom.food.mvp.model
-
+package com.dipom.food.mvp.meals
 data class MealItemModel(
     val img: String? = null,
     val name: String? = null,
