@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MealsApi {
+interface Api {
 
     @GET("api/recipes/v2")
     fun getRecipes(

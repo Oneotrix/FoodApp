@@ -1,4 +1,4 @@
-package com.dipom.food.mvp.view.ui.recycler
+package com.dipom.food.mvp.ui.recycler
 
 import androidx.recyclerview.widget.RecyclerView
 import com.dipom.food.databinding.ItemMealBinding
